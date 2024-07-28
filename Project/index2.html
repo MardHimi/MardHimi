@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <title>თიბისი კონცეპტი | TBC Concept</title>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <style>
+ body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
+    .navbar {
+        background: linear-gradient(90deg, #333, #444);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 40px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .nav-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-item {
+        position: relative;
+    }
+
+    .nav-item a, .dropbtn {
+        color: white;
+        text-align: center;
+        padding: 15px 20px;
+        font-size: 18px;
+        text-decoration: none;
+        transition: background 0.3s, transform 0.3s;
+        border-radius: 5px;
+    }
+
+    .nav-item a:hover, .dropdown:hover .dropbtn {
+        background-color: #575757;
+        transform: scale(1.05);
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 220px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: #333;
+        padding: 14px 24px;
+        font-size: 18px;
+        text-decoration: none;
+        display: block;
+        transition: background 0.3s;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .search-form {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input {
+        padding: 10px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 8px 0 0 8px;
+        outline: none;
+        width: 300px;
+    }
+
+    .search-button {
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #575757;
+        color: white;
+        border: 1px solid #575757;
+        border-radius: 0 8px 8px 0;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .search-button:hover {
+        background-color: #444;
+    }
+
+    /* Burger icon for mobile view */
+    .burger-icon {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .burger-icon div {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 5px 0;
+        transition: 0.4s;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .navbar {
+            flex-wrap: wrap;
+            padding: 10px 20px;
+        }
+
+        .nav-menu {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            display: none;
+            background-color: #333;
+            border-radius: 8px;
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-item a, .dropbtn {
+            padding: 15px 20px;
+            font-size: 18px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .burger-icon {
+            display: flex;
+        }
+
+        .search-form {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .search-input {
+            width: calc(100% - 42px); /* Full width minus button width */
+            border-radius: 8px;
+        }
+
+        .search-button {
+            border-radius: 8px;
+        }
+    }
+
+    /* Mobile-specific styles */
+    @media (max-width: 480px) {
+        .nav-item a, .dropbtn {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+
+        .search-input, .search-button {
+            font-size: 16px;
+        }
+
+        .search-form {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .search-input {
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .search-button {
+            width: 100%;
+            border-radius: 8px;
+        }
+    }
+    </style>
+
+<nav class="navbar">
+    <div class="burger-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul class="nav-menu">
+        <li class="nav-item"><a href="#">Home</a></li>
+        <li class="nav-item"><a href="#">About</a></li>
+        <li class="nav-item dropdown">
+            <a href="#" class="dropbtn">Services</a>
+            <div class="dropdown-content">
+                <a href="#">Web Design</a>
+                <a href="#">SEO</a>
+                <a href="#">Marketing</a>
+            </div>
+        </li>
+        <li class="nav-item"><a href="#">Contact</a></li>
+    </ul>
+    <form class="search-form" action="#" method="GET">
+        <input type="text" name="search" placeholder="Search..." class="search-input">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+</nav>
+
+<script>
+    function toggleMenu() {
+        var menu = document.querySelector('.nav-menu');
+        menu.classList.toggle('active');
+    }
+</script>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        .swiper-container {
+          width: 100%;
+          height: auto; /* Use auto to allow the height to adjust based on content */
+          margin-bottom: 20px; /* Space between sliders */
+        }
+      
+        .swiper-slide {
+          background: #ddd;
+          text-align: center;
+          line-height: 300px; /* Set a base height for the slider */
+          font-size: 1.5em;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      
+        .swiper-scrollbar {
+          background: rgba(0, 0, 0, 0.3);
+          height: 8px;
+        }
+      
+        .secondary-slider-scrollbar {
+          background: rgba(0, 0, 0, 0.5);
+        }
+      
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .swiper-slide {
+            line-height: 200px; /* Reduce line-height for smaller screens */
+            font-size: 1.2em; /* Adjust font size for readability */
+          }
+      
+          .swiper-scrollbar {
+            height: 6px; /* Adjust scrollbar height */
+          }
+        }
+      
+        @media (max-width: 480px) {
+          .swiper-slide {
+            line-height: 150px; /* Further reduce line-height for small screens */
+            font-size: 1em; /* Further adjust font size */
+          }
+      
+          .swiper-scrollbar {
+            height: 5px; /* Further adjust scrollbar height */
+          }
+        }
+      </style>
+      
+    </style>
+
+
+
+
+<style>
+    .photo-container {
+        position: relative;
+        width: 100%; /* Full width */
+        height: auto; /* Automatic height adjustment */
+        max-height: 500px; /* Maximum height */
+        overflow: hidden; /* Hide overflow */
+    }
+
+    .photo-container img {
+        width: 100%;
+        height: auto; /* Auto height for responsiveness */
+        object-fit: cover; /* Ensures the image covers the container */
+    }
+
+    .text-overlay {
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 1.2em; /* Adjust font size for better visibility */
+        max-width: 90%; /* Prevents text from going outside the container */
+        box-sizing: border-box; /* Includes padding in width calculations */
+    }
+
+    .button {
+        position: absolute;
+        bottom: 10%;
+        right: 5%;
+        padding: 10px 20px;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em; /* Font size for button */
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .photo-container {
+            max-height: 300px; /* Reduce max height on smaller screens */
+        }
+
+        .text-overlay {
+            font-size: 1em; /* Smaller font size */
+            padding: 8px;
+        }
+
+        .button {
+            padding: 8px 16px; /* Smaller padding */
+            font-size: 0.9em; /* Smaller font size */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .photo-container {
+            max-height: 200px; /* Further reduce max height */
+        }
+
+        .text-overlay {
+            font-size: 0.9em; /* Further reduce font size */
+            padding: 6px;
+        }
+
+        .button {
+            padding: 6px 12px; /* Further reduce padding */
+            font-size: 0.8em; /* Further reduce font size */
+        }
+    }
+</style>
+
+
+<div class="photo-container">
+<img src="banking.jpeg" alt="Photo">
+<div class="text-overlay">
+    <p>Some descriptive text</p>
+</div>
+<button class="button">Click Me</button>
+</div>
+
+
+<style>
+    .container {
+        margin: 20px;
+            display: flex;
+            gap: 30px; /* Adjust space between containers */
+        }
+
+        .box {
+            width: 100%; /* Adjust width as needed */
+            height: 150px; /* Adjust height as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff; /* Background color for the boxes */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+        }
+
+        .box:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+
+        @media (max-width: 768px) {
+        .box {
+            height: 120px; /* Reduce height for smaller screens */
+            font-size: 1.3em; /* Slightly reduce font size */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .box {
+            height: 100px; /* Further reduce height */
+            font-size: 1.2em; /* Further reduce font size */
+        }
+
+        .container {
+            gap: 15px; /* Reduce gap between boxes */
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="box">123</div>
+    <div class="box">456</div>
+    <div class="box">789</div>
+</div>
+
+<!-- ------------------------------------------------------------------------------------ -->
+
+<style>
+
+.container1 {
+    display: flex;
+    width: 100%;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px; /* Adjust spacing as needed */
+    width: 50%;
+}
+
+.right-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.box1 {
+    border-radius: 15px; /* Rounded corners */
+    background-color: lightblue;
+    border: 1px solid #000;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+    height: 200px;
+}
+
+.box2 {
+    background-color: lightblue;
+    border-radius: 15px;
+    border: 1px solid #000;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+     /* Adjust width as needed */
+     width: 100%;
+    height: 460px;
+}
+
+.box1:hover, .box2:hover {
+    background-color: lightcoral; /* Change background on hover */
+    transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+@media (max-width: 768px) {
+        .container1 {
+            flex-direction: column; /* Stack columns vertically on smaller screens */
+        }
+
+        .left-column,
+        .right-column {
+            margin-right: 0; /* Remove margin on smaller screens */
+        }
+
+        .box1, .box2 {
+            margin: 10px 0; /* Adjust margin for better spacing */
+            width: 100%; /* Full width for boxes */
+        }
+
+        .box1 {
+            height: 180px; /* Adjust height for smaller screens */
+        }
+
+        .box2 {
+            height: 400px; /* Adjust height for smaller screens */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .box1 {
+            height: 160px; /* Further adjust height */
+        }
+
+        .box2 {
+            height: 360px; /* Further adjust height */
+        }
+    }
+</style>
+
+    <div class="container1">
+        <div class="left-column">
+            <div class="box1">Box 1</div>
+            <div class="box1">Box 2</div>
+        </div>
+        <div class="right-column">
+            <div class="box2">Box 3</div>
+        </div>
+    </div>
+
+
+
+<!-- ------------------------------------------------------------------------------------- -->
+
+<style>
+    .swiper-container {
+        width: 100%;
+        height: auto; /* Height adjusts automatically */
+        margin: 20px auto;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .swiper-scrollbar {
+        background-color: #f0f0f0;
+        border-radius: 10px;
+    }
+
+    .swiper-scrollbar-drag {
+        background-color: #007aff;
+        border-radius: 10px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .swiper-slide {
+            font-size: 16px; /* Slightly smaller font size */
+            padding: 15px; /* Adjust padding */
+        }
+
+        .swiper-container {
+            margin: 10px auto; /* Reduce margin */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .swiper-slide {
+            font-size: 14px; /* Further reduce font size */
+            padding: 10px; /* Further adjust padding */
+        }
+
+        .swiper-container {
+            border: 1px solid #ddd; /* Reduce border size */
+            border-radius: 8px; /* Reduce border radius */
+        }
+    }
+
+</style>
+
+<div class="swiper-container slider1">
+    <div><h2>შეთავაზებები</h2></div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">Slider 1 - Slide 1</div>
+        <div class="swiper-slide">Slider 1 - Slide 2</div>
+        <div class="swiper-slide">Slider 1 - Slide 3</div>
+        <!-- Add more slides as needed -->
+    </div>
+    <!-- Add Scrollbar -->
+    </div>
+
+<!--  --------------------------------------------------------- -->
+
+<style>
+    .container2 {
+        width: 100%;
+        height: 400px;
+        position: relative;
+        background-color: #f0f0f0; /* Light background color for visibility */
+    }
+
+    .text1 {
+        top: 50%;
+        position: absolute;
+        left: 10px; /* Adjust as needed */
+          /* Adjust as needed */
+        font-size: 20px;
+        color: #333; /* Dark text color for contrast */
+    }
+
+    .small-div {
+        
+        display: flex;
+            position: absolute;
+            width: 120px;  /* Larger size */
+            height: 50px; /* Larger size */
+            background-color: #007bff; /* Background color for the small divs */
+            z-index: 5; /* Ensure divs are below text but above the background */
+        }
+
+        .small-div-1 {
+            left: 20px; /* Align with text */
+            top: 275px;  /* Position below the text */
+        }
+
+        .small-div-2 {
+            left: 150px; /* Increased value for more spacing */
+            top: 275px;  /* Position below the text */
+        }
+
+    .image1 {
+        position: absolute;
+            right: 20px; /* Adjust as needed */
+             /* Adjust as needed */
+            z-index: 10; /* Adjust as needed */
+    }
+
+    .image1 img {
+        margin: 10px;
+        max-width: 390px; /* Smaller size */
+            max-height: 90%; /* Ensure the image doesn’t exceed 50px in height */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px; /* Rounded corners for the image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Maintain aspect ratio */
+    }
+</style>
+
+<div class="container2">
+    <div class="text1">Your Text Here</div>
+    <div class="small-div small-div-1"></div>
+    <div class="small-div small-div-2"></div>
+    <div class="image1">
+        <img src="hone.png" alt="Description of Image">
+    </div>
+</div>
+
+<!-- ------------------------------------------------------------ -->
+
+
+    <div class="swiper-container slider1">
+        <div><h2>როდუქტები</h2></div>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slider 1 - Slide 1</div>
+            <div class="swiper-slide">Slider 1 - Slide 2</div>
+            <div class="swiper-slide">Slider 1 - Slide 3</div>
+            <!-- Add more slides as needed -->
+        </div>
+        <!-- Add Scrollbar -->
+        </div>
+
+<style>
+    .photo-container {
+        position: relative;
+        width: 100%; /* Adjust width as needed */
+        height: 400px; /* Adjust height as needed */
+    }
+    .photo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image covers the container */
+    }
+
+    .text-overlay {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .button {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+<div class="photo-container">
+<img src="banking.jpeg" alt="Photo">
+<div class="text-overlay">
+    <p>Some descriptive text</p>
+</div>
+<button class="button">Click Me</button>
+</div>
+
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<div><h2>ჯილდოები</h2></div>
+<div class="swiper-container slider2">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">Slider 2 - Slide 1</div>
+        <div class="swiper-slide">Slider 2 - Slide 2</div>
+        <div class="swiper-slide">Slider 2 - Slide 3</div>
+        <!-- Add more slides as needed -->
+    </div>
+    <!-- Add Scrollbar -->
+   </div>
+
+<style>.swiper-scrollbar {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    height: 8px;
+}
+.swiper-scrollbar-drag {
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+}</style>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+        new Swiper('.slider1', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000, // Delay between transitions (in milliseconds)
+                disableOnInteraction: false, // Continue autoplay after user interactions
+            },
+            loop: true, // Loop slides infinitely
+        });
+
+        new Swiper('.slider2', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000, // Delay between transitions (in milliseconds)
+                disableOnInteraction: false, // Continue autoplay after user interactions
+            },
+            loop: true, // Loop slides infinitely
+        });
+    });
+
+</script>
+
+    <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    footer {
+        background: #2c3e50; /* Darker shade for footer background */
+        color: #ecf0f1; /* Light color for text */
+        padding: 40px 20px; /* More padding for a spacious look */
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
+        max-width: 1200px; /* Center the content */
+        margin: 0 auto;
+    }
+
+    .footer-section {
+        flex: 1;
+        margin: 20px;
+        min-width: 250px; /* Ensures sections don't get too narrow */
+    }
+
+    .footer-section h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #bdc3c7; /* Softer color for headings */
+        border-bottom: 2px solid #ecf0f1; /* Underline effect */
+        padding-bottom: 5px;
+    }
+
+    .footer-section p, .footer-section a {
+        color: #ecf0f1;
+        text-decoration: none;
+        line-height: 1.6; /* Better line spacing */
+    }
+
+    .footer-section a:hover {
+        color: #1abc9c; /* Accent color for hover effect */
+        text-decoration: underline;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        border-top: 1px solid #7f8c8d; /* Lighter border for a soft divide */
+        padding-top: 20px;
+        font-size: 14px;
+        color: #bdc3c7;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .footer-section {
+            min-width: 100%; /* Full width for each section */
+            margin: 20px 0; /* Adjust margin for better spacing */
+        }
+
+        .footer-content {
+            justify-content: center; /* Center sections in flex container */
+        }
+    }
+
+    @media (max-width: 480px) {
+        footer {
+            padding: 30px 15px; /* Adjust padding for smaller screens */
+        }
+
+        .footer-section {
+            margin: 10px 0; /* Reduce margin between sections */
+        }
+
+        .footer-bottom {
+            font-size: 12px; /* Smaller font size for footer bottom text */
+        }
+    }
+</style>
+
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <p>Email: info@example.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+            <h2>Follow Us</h2>
+            <a href="https://facebook.com" target="_blank" class="social-icon">Facebook</a>
+            <a href="https://twitter.com" target="_blank" class="social-icon">Twitter</a>
+            <a href="https://instagram.com" target="_blank" class="social-icon">Instagram</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
